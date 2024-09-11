@@ -1,5 +1,3 @@
-
-
 import numpy as np
 import pandas as pd
 from sklearn.model_selection import train_test_split
@@ -88,17 +86,14 @@ class PokerBot:
         return self.calculate_hand_strength(hand, board_cards)
 
     def evaluate_board_strength(self, board_cards):
-        # Placeholder function. Implement a real board strength evaluation.
         if not board_cards:
             return 0
         return np.random.random()
 
     def calculate_opponent_aggressiveness(self):
-        # Placeholder function. Implement a real calculation for opponent aggressiveness.
         return np.random.random()
 
     def calculate_potential_winning_chance(self, hand, board_cards):
-        # Placeholder function. Implement a real calculation for potential winning chance.
         return np.random.random()
 
     def calculate_pot_odds(self, pot_size, call_amount):
@@ -142,58 +137,3 @@ class PokerBot:
             'feature13': features[12], 'feature14': features[13], 'feature15': features[14],
             'action': action
         })
-
-def generate_random_training_data(num_samples):
-    positions = ['early', 'middle', 'late']
-    actions = ['fold', 'call', 'raise']
-
-    data = []
-    for _ in range(num_samples):
-        hand = [random.choice(['As', 'Ks', 'Qs', 'Js', 'Ts', '9s', '8s', '7s', '6s', '5s']),
-                random.choice(['Ad', 'Kd', 'Qd', 'Jd', 'Td', '9d', '8d', '7d', '6d', '5d'])]
-        position = random.choice(positions)
-        pot_size = random.randint(50, 200)
-        board_cards = [random.choice(['2d', '3h', '5s', '8c', '9h', 'Jd', 'Kh', 'Ah'])]
-        stack_size = random.randint(500, 2000)
-        num_players = random.randint(2, 9)
-        action = random.choice(actions)
-
-        data.append({
-            'hand': hand,
-            'position': position,
-            'pot_size': pot_size,
-            'board_cards': board_cards,
-            'stack_size': stack_size,
-            'num_players': num_players,
-            'action': action
-        })
-    return data
-
-# Example usage
-bot = PokerBot()
-
-# Add training data here
-training_data = generate_random_training_data(120)
-for example in training_data:
-    bot.add_training_data(
-        hand=example['hand'],
-        position=example['position'],
-        pot_size=example['pot_size'],
-        board_cards=example['board_cards'],
-        stack_size=example['stack_size'],
-        num_players=example['num_players'],
-        action=example['action']
-    )
-
-# Train the bot
-bot.train_model()
-
-# Check the bot
-hand = ['As', 'Ks']
-position = 'middle'
-pot_size = 150
-board_cards = ['2d', '3h', '5s']
-stack_size = 1000
-num_players = 3
-action = bot.decide_action(hand, position, pot_size, board_cards, stack_size, num_players)
-print(f"Bot's action: {action}")
